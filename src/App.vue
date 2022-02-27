@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import PostListVue from "./components/PostList.vue";
-import PostFormVue from "./components/PostForm.vue";
+import PostListVue from "@/components/PostList.vue";
+import PostFormVue from "@/components/PostForm.vue";
 
 export default {
   components: {
@@ -32,9 +32,7 @@ export default {
     },
 
     deletePost(id) {
-      const newPosts = this.posts.filter(post => {
-        return post.id !== id;
-      });
+      const newPosts = this.posts.filter(post => post.id !== id);
       this.posts = newPosts;
     },
   }

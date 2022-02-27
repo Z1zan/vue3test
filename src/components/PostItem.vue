@@ -11,12 +11,14 @@
       </div>
     </div>
 
-    <my-button class="btn" @click="deletePost(post)">Удалить</my-button>
+    <div class="btns-container">
+      <my-button class="btn" @click="deletePost(post)">Удалить</my-button>
+    </div>
   </div>
 </template>
 
 <script>
-import MyButton from "./UI/MyButton.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 
 export default {
     props: {
