@@ -1,30 +1,54 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <post-form-vue @createPost="createPost" />
+    <post-list-vue :posts="posts" @deletePost="deletePost" />
+  </div>
 </template>
 
+<script>
+import PostListVue from "./components/PostList.vue";
+import PostFormVue from "./components/PostForm.vue";
+
+export default {
+  components: {
+    PostListVue,
+    PostFormVue
+  },
+  data() {
+    return {
+      posts: [
+        { id: 1, title: 'Vue', desc: "Описание поста о Vue" },
+        { id: 2, title: 'Angular', desc: "Описание поста об Angular" },
+        { id: 3, title: 'React', desc: "Описание поста о React" },
+        { id: 4, title: 'JavaScript', desc: "Описание поста о JavaScript" },
+      ],
+
+    }
+  },
+  methods: {
+
+    createPost(post) {
+      this.posts.unshift(post);
+    },
+
+    deletePost(id) {
+      const newPosts = this.posts.filter(post => {
+        return post.id !== id;
+      });
+      this.posts = newPosts;
+    },
+  }
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.app {
+  padding: 20px;
 }
 </style>
